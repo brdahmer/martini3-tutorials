@@ -75,8 +75,7 @@ The *hexagonality* of lipid tail packing is a number that tells you how close th
 ./hexagonality.py -f phase_sep.xtc -s phase_sep.tpr
 qtgrace hexagonality.xvg
 ```
-
-![[Pasted image 20261028165441.png|449]]
+<img width="780" height="542" alt="Pasted image 20261028165441" src="https://github.com/user-attachments/assets/467ca678-d063-45db-9b57-9de41e4765c6" />
 
 The y-axis is the fraction of tails that pass the aforementioned test (0 to 1). The system in this tutorial is 2:1 DBPC:DLPC, and DBPC is the gel-forming lipid. If every DBPC tail were hexagonally packed and no DLPC tail were, the fraction would be about 0.67. The system plateaus at ~0.61, expected of a well phase-separated system. We can estimate the temperature of each phase from the last frame of the simulation using the `kinetic-temperature.py` script, to check whether the gel (DBPC-rich) and liquid (DLPC-rich) regions both sit around 290 K.
 
@@ -94,7 +93,7 @@ This section covers the parametrization of a new lipid headgroup, such as in cas
 
 Lysyl-PG (lysyl-phosphatidylglycerol) is a membrane lipid in several gram-positive bacteria, such as Staphylococcus aureus, which confers a higher level of antimicrobial resistance to cationic host defense peptides[5]. Lysyl-PG consists of the ester of phosphatidylglycerol (PG) with the amino acid lysine.
 
-![[Pasted image 20261028181007.png|275]]
+<img width="555" height="241" alt="Pasted image 20261028181007" src="https://github.com/user-attachments/assets/4ddb544d-8aeb-4f72-b272-12bf2536af9d" />
 
 #### Creating the lysyl-PG topology
 
