@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+# GROMACS binary / large outputs (regenerate from inputs)
+*.xtc
+*.trr
+*.tpr
+*.cpt
+*.edr
+#*#
+# MDAnalysis offset caches
+.*_offsets.npz
+.*_offsets.lock
+# oversized files (>100 MB GitHub limit)

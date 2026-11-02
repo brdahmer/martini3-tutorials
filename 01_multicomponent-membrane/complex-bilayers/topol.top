@@ -1,0 +1,20 @@
+#include "../../martini_v300/martini_v3.0.0.itp" ; the particle definitions should be included first
+#include "../../martini_v300/martini_v3.0.0_ffbonded_v2.itp" ; the general lipid bonded definitions should be included before the specific lipid topologies
+#include "../../martini_v300/martini_v3.0.0_phospholipids_PC_v2.itp" ; remaining relevant .itps for molecules
+#include "../../martini_v300/martini_v3.0.0_solvents_v1.itp" ; for water
+#include "../../martini_v300/martini_v3.0.0_ions_v1.itp" ; for ions
+
+[ system ]
+; name
+INSANE! Membrane UpperLeaflet>DBPC:DLPC=2.0:1.0 LowerLeaflet>DBPC:DLPC=2.0:1.0
+
+
+[ molecules ]
+; name  number
+DBPC           225 ; Defined in the packaged 'lipids.dat'.
+DLPC           112 ; Defined in 'lipids.dat'.
+DBPC           225 ; Defined in the packaged 'lipids.dat'.
+DLPC           112 ; Defined in 'lipids.dat'.
+W             8500
+NA              94
+CL              94

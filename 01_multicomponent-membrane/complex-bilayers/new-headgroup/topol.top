@@ -1,0 +1,21 @@
+#include "../../../martini_v300/martini_v3.0.0.itp" ; the particle definitions should be included first
+#include "../../../martini_v300/martini_v3.0.0_ffbonded_v2.itp" ; the general lipid bonded definitions should be included before the specific lipid topologies
+#include "polpg.itp"
+#include "../../../martini_v300/martini_v3.0.0_phospholipids_PG_v2.itp" ; remaining relevant .itps for molecules
+#include "../../../martini_v300/martini_v3.0.0_solvents_v1.itp" ; for water
+#include "../../../martini_v300/martini_v3.0.0_ions_v1.itp" ; for ions
+
+[ system ]
+; name
+INSANE! Membrane UpperLeaflet>POPG:POLPG=5.0:1.0 LowerLeaflet>POPG:POLPG=5.0:1.0
+
+
+[ molecules ]
+; name  number
+POPG           281 ; Defined in the packaged 'lipids.dat'.
+POLPG           56 ; Defined in '../lipids.dat'.
+POPG           281 ; Defined in the packaged 'lipids.dat'.
+POLPG           56 ; Defined in '../lipids.dat'.
+W             3990
+W             3990
+NA             450

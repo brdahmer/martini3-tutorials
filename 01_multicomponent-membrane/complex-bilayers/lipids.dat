@@ -1,0 +1,29 @@
+[ diacylglycerol ]
+;
+; PROTOLIPID (diacylglycerol), 18 beads
+;
+; 1-3-4-6-7--9-10-11-12-13-14
+;  \| |/  |
+;   2 5   8-15-16-17-18-19-20
+;
+           0  .5   0   0  .5   0   0  .5   0   0   0   0   0   0   1   1   1   1   1   1
+           0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+          10   9   9   8   8   7   6   6   5   4   3   2   1   0   5   4   3   2   1   0
+;          1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
+M3.DLPC   0   -   -   -  NC3  -  PO4 GL1 GL2 C1A D2A D3A C4A  -   -  C1B D2B D3B C4B  -   -
+
+[ lysylpg ]
+;
+; PROTOLIPID (lysyl-phosphatidylglycerol)
+;
+; 3  1--4--5--6--8--9--10--11--12--13     SC2  BB--GL0--PO4--GL1--C1A--(...)
+;  \ |      \ |                              \ |           \  |
+;   2        7--14--15--16--17--18--19       SC1             GL2--C1B--(...)
+; 
+               0  .5   0   0   0   0  .5   0   0   0   0   0   0   1   1   1   1   1   1  
+               0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+               9   9  10   8   7   6   6   5   4   3   2   1   0   5   4   3   2   1   0
+; bead number: 1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19
+M3.POLPG   1   BB SC1 SC2 GL0 PO4 GL1 GL2 C1A D2A C3A C4A  -   -  C1B C2B C3B C4B  -   -
+; M3 indicates this template will be used when the Martini 3 FF is asked for (which is the default)
+; The numeric '1' field is the lipid's overall charge

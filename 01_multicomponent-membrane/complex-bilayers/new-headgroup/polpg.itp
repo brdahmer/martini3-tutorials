@@ -1,0 +1,55 @@
+[moleculetype]
+; molname      nrexcl
+  POLPG          1
+
+[ atoms ]
+; id type resnr residu atom cgnr charge
+   1   Q5    1  POLPG   BB   1  1.0   ;Lysine
+   2  SC3    1  POLPG  SC1   2    0
+   3 SQ4p    1  POLPG  SC2   3  1.0
+   4   P1    1  POLPG  GL0   4    0   ;POPG
+   5   Q5    1  POLPG  PO4   5 -1.0
+   6 SN4a    1  POLPG  GL1   6    0
+   7 SN4a    1  POLPG  GL2   7    0
+   8   C1    1  POLPG  C1A   8    0
+   9  C4h    1  POLPG  D2A   9    0
+  10   C1    1  POLPG  C3A  10    0
+  11   C1    1  POLPG  C4A  11    0
+  12  SC1    1  POLPG  C1B  12    0
+  13   C1    1  POLPG  C2B  13    0
+  14   C1    1  POLPG  C3B  14    0
+  15   C1    1  POLPG  C4B  15    0
+
+[bonds]
+;  i  j 	name 	(using named bondtypes from martini_v3.0.0_ffbonded_v2.itp)
+;  i  j 	funct 	force.c.
+  1  2   1  0.330     5000
+  1  4   b_GL0_PO4_def
+  2  3   1  0.360     5000
+  4  5   b_GL0_PO4_def
+  5  6   b_PO4_GL_def
+  5  7   b_PO4_GL_def_long
+  6  7   b_GL_GL_glyc
+  6  8   b_GL_C1_glyc_5long
+  8  9   b_C1_C4_mid_5long
+  9 10   b_C4_C1_mid
+ 10 11   b_C1_C1_end
+  7 12   b_GL_SC1_glyc
+ 12 13   b_SC1_C1_mid
+ 13 14   b_C1_C1_mid
+ 14 15   b_C1_C1_end
+
+[angles]
+;  i  j  k 	name 	(using named angletypes from martini_v3.0.0_ffbonded_v2.itp)
+;  i  j  k 	funct 	angle 	force.c.
+  1  2  3    2   180.000    25.0
+  4  5  6    a_GL0_PO4_GL_def
+  5  6  8    a_PO4_GL_C_def
+  7  6  8    a_GL_GL_C_glyc
+  6  7 12    a_GL_GL_C_glyc
+  6  8  9    a_GL_C1_C4_glyc
+  8  9 10    a_C1_C4_C1_def
+  9 10 11    a_C4_C1_C1_def
+  7 12 13    a_GL_C1_C1_glyc
+ 12 13 14    a_C1_C1_C1_def
+ 13 14 15    a_C1_C1_C1_def

@@ -1,0 +1,74 @@
+# This file was created Thu Oct 29 19:51:26 2026
+# Created by:
+#                     :-) GROMACS - gmx density, 2022.2 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/bdahmer/Documents/md-snippets/martini3-tutorials/00_dspc-spontaneous-assembly/equilibration
+# Command line:
+#   gmx density -s dspc-eq.tpr -f dspc-eq-centered.xtc -d Z -ng 1 -o p-density-centered.xvg -n index.ndx
+# gmx density is part of G R O M A C S:
+#
+# Gnomes, ROck Monsters And Chili Sauce
+#
+@    title "Partial density"
+@    xaxis  label "Average coordinate (nm)"
+@    yaxis  label "Density (kg m\S-3\N)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "P*"
+   0.0692196                0
+    0.207659                0
+    0.346098         0.151279
+    0.484537         0.755766
+    0.622976          6.21004
+    0.761415           31.586
+    0.899854          87.2618
+     1.03829          241.609
+     1.17673          326.614
+     1.31517          405.555
+     1.45361          258.771
+     1.59205          140.542
+     1.73049          39.3685
+     1.86893          8.17829
+     2.00737         0.939093
+     2.14581        0.0303055
+     2.28425                0
+     2.42268                0
+     2.56112                0
+     2.69956                0
+       2.838                0
+     2.97644                0
+     3.11488                0
+     3.25332                0
+     3.39176                0
+      3.5302                0
+     3.66864                0
+     3.80708                0
+     3.94551                0
+     4.08395                0
+     4.22239                0
+     4.36083                0
+     4.49927                0
+     4.63771        0.0606168
+     4.77615         0.301755
+     4.91459          1.93745
+     5.05303          9.60429
+     5.19147          41.2599
+     5.32991           129.11
+     5.46834          263.256
+     5.60678          356.194
+     5.74522          311.575
+     5.88366          174.396
+      6.0221          61.5122
+     6.16054          14.0855
+     6.29898          2.02997
+     6.43742         0.181884
+     6.57586                0
+      6.7143                0
+     6.85274                0
