@@ -1,13 +1,24 @@
 # macOS
 .DS_Store
-# GROMACS binary / large outputs (regenerate from inputs)
+
+# GROMACS binary / large outputs (regenerate from the inputs in each folder)
 *.xtc
 *.trr
 *.tpr
 *.cpt
 *.edr
-#*#
+
+# GROMACS backup files such as #index.ndx.1#
+# (a leading "#" would make the line a comment, so it is escaped)
+\#*#
+
 # MDAnalysis offset caches
 .*_offsets.npz
 .*_offsets.lock
+
+# Python
+__pycache__/
+*.pyc
+
 # oversized files (>100 MB GitHub limit)
+00_dspc-spontaneous-assembly/dspc-md.pdb
