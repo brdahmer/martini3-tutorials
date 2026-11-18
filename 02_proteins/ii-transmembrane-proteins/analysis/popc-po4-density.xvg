@@ -1,0 +1,74 @@
+# This file was created Mon Nov  9 16:23:48 2026
+# Created by:
+#                     :-) GROMACS - gmx density, 2022.2 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/bdahmer/Documents/martini3-tutorials/02_proteins-introduction/ii-transmembrane-proteins/analysis
+# Command line:
+#   gmx density -f ../insane/dynamic.xtc -s ../insane/dynamic.tpr -n popc_index.ndx -d Z -b 3000 -o popc-po4-density.xvg
+# gmx density is part of G R O M A C S:
+#
+# Great Red Owns Many ACres of Sand 
+#
+@    title "Partial density"
+@    xaxis  label "Average coordinate (nm)"
+@    yaxis  label "Density (kg m\S-3\N)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "PO4"
+   0.0831372                0
+    0.249412                0
+    0.415686                0
+    0.581961                0
+    0.748235                0
+    0.914509                0
+     1.08078                0
+     1.24706         0.065376
+     1.41333         0.818808
+     1.57961          7.49043
+     1.74588          40.2878
+     1.91216          131.211
+     2.07843          259.598
+      2.2447           309.42
+     2.41098          222.878
+     2.57725          90.2001
+     2.74353          22.7326
+      2.9098          3.12874
+     3.07608         0.278272
+     3.24235         0.016375
+     3.40863                0
+      3.5749                0
+     3.74117                0
+     3.90745                0
+     4.07372                0
+        4.24                0
+     4.40627                0
+     4.57255                0
+     4.73882                0
+      4.9051                0
+     5.07137                0
+     5.23765         0.508339
+     5.40392          4.42467
+     5.57019          25.4771
+     5.73647           99.012
+     5.90274          241.715
+     6.06902          319.431
+     6.23529          243.748
+     6.40157          105.486
+     6.56784          29.0298
+     6.73412          4.58877
+     6.90039         0.704604
+     7.06666        0.0492087
+     7.23294                0
+     7.39921                0
+     7.56549                0
+     7.73176                0
+     7.89804                0
+     8.06431                0
+     8.23059                0

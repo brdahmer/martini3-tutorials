@@ -1,0 +1,1 @@
+/opt/homebrew/lib/python3.11/site-packages/TS2CG/PCG  -str  input.str  -LLIB  Martini3.LIB  -defout  system  -function  analytical_shape  

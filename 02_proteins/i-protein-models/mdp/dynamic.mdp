@@ -1,0 +1,53 @@
+; dynamic.mdp: production, no restraints, 250 ns
+; (the tutorial recommends >= 3 replicas of 250 ns)
+integrator               = md
+dt                       = 0.02
+nsteps                   = 12500000   ; 250 ns
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 25000      ; 0.5 ns
+nstenergy                = 25000      ; 0.5 ns
+nstxout-compressed       = 50000      ; 1 ns
+compressed-x-precision   = 100
+
+; new velocities with a random seed, so replicas differ
+gen_vel                  = yes
+gen_temp                 = 310
+gen_seed                 = -1
+
+; Neighbour list and interactions (Martini 3, from the standard template)
+cutoff-scheme            = Verlet
+nstlist                  = 20
+rlist                    = 1.35
+verlet-buffer-tolerance  = -1
+pbc                      = xyz
+
+coulombtype              = reaction-field
+rcoulomb                 = 1.1
+epsilon_r                = 15
+epsilon_rf               = 0
+vdw_type                 = cutoff
+vdw-modifier             = Potential-shift-verlet
+rvdw                     = 1.1
+
+constraints              = none
+
+; Temperature: protein + everything else (default index groups, no .ndx needed)
+tcoupl                   = v-rescale
+tc-grps                  = Protein non-Protein
+tau_t                    = 1.0 1.0
+ref_t                    = 310 310
+nsttcouple               = 20
+
+; Pressure: isotropic (the template's semiisotropic is for membranes)
+Pcoupl                   = c-rescale
+Pcoupltype               = isotropic
+tau_p                    = 4.0
+ref_p                    = 1.0
+compressibility          = 3e-4
+nstpcouple               = 20
+refcoord_scaling         = all
+
+comm-mode                = Linear
+nstcomm                  = 100

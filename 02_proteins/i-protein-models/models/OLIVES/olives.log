@@ -1,0 +1,22 @@
+OLIVES_v2.1.1b_M3.0.0.py is written by Kasper Busk Pedersen, 29th of July 2024.
+If you use this script in your work, please cite Pedersen et al. https://pubs.acs.org/doi/10.1021/acs.jctc.4c00553 DOI: 10.1021/acs.jctc.4c00553
+Processing conformation CK1d_cg.pdb
+Computing distances between all pairs...
+Detected 0 disulfide bridges
+All possible pairs: 264628
+Secondary pairs after distance cutoff: 207
+Tertiary pairs after distance cutoff: 1391
+Secondary HB pairs after checks: 207
+Tertiary HB pairs after checks: 543
+Secondary HB pairs after weighted matching: 175
+Tertiary HB pairs after weighted matching: 205
+ o o o o o o o o o 
+Remember to use "gmx mdrun --noddcheck -rdd 2.0" to avoid domain decomposition warnings if OLIVES bonds gets too long.
+"-noddcheck" turns off a GROMACS domain decomposition error for pairs that become too long relative to the length of a domain (set by -rdd), abruptly ending your run.
+This could happen if a protein complex dissociates or a protein unfolds. The 2 nm cutoff for domains in -rdd is where a LJ potential with energy minimum distance at 0.55 nm (the OLIVES cutoff) goes to 0, and therefore not important if missed.
+If you experience DD errors that cannot be solved by --noddcheck, try using 1 MPI tread and all openMP threads instead of domain decomposition https://manual.gromacs.org/documentation/current/user-guide/mdrun-performance.html.
+OLIVES has been tested using the -scfix flag of martinize2 - if you are using multistate OLIVES, remember to combine the -scfix flag with the OLIVES scfix script
+OLIVES does not use the virtual site approach implemented in e.g. GoMARTINI and thus does not use the martinize2 flags -govs-include.
+OLIVES does not require -dssp secondary structure restraints, although one can opt to restrain the secondary structure at the cost of overstabilized secondary structure.
+ o o o o o o o o o 
+Done!

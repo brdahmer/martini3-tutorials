@@ -1,0 +1,20 @@
+; because we're using water biasing.
+#define WBIAS
+
+; include all the relevant .itps
+#include "../water-bias/martini_v3.0.0.itp"
+#include "../water-bias/molecule_0.itp"
+#include "../../../martini_v300/martini_v3.0.0_phospholipids_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_solvents_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+; name
+KALP in DOPC
+
+[ molecules ]
+; name number
+molecule_0    1
+POPC 		  156
+W           2285
+CL               4

@@ -1,0 +1,29 @@
+; because we're using water biasing.
+#define WBIAS
+
+#include "../water-bias/martini_v3.0.0.itp"
+#include "../water-bias/molecule_0.itp"
+#include "../../../martini_v300/martini_v3.0.0_phospholipids_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_solvents_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+; name
+Two KALP peptides in POPC (Insane system doubled along x with gmx genconf -nbox 2 1 1)
+
+
+[ molecules ]
+; gmx genconf writes the whole first copy, then the whole second copy
+; name  number
+; copy 1
+molecule_0          1
+POPC            77 ; Defined in the packaged 'lipids.dat'.
+POPC            78 ; Defined in the packaged 'lipids.dat'.
+W             1927
+CL               4
+; copy 2
+molecule_0          1
+POPC            77 ; Defined in the packaged 'lipids.dat'.
+POPC            78 ; Defined in the packaged 'lipids.dat'.
+W             1927
+CL               4

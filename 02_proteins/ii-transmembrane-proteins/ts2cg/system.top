@@ -1,0 +1,21 @@
+; Topology for the TS2CG route. TS2CG PCG writes no #include lines and calls the
+; peptide KALP; martinize2's itp calls it molecule_0. Water count is SOL's output
+; minus the water removed from the bilayer core.
+#include "../../../martini_v300/martini_v3.0.0.itp"
+#include "../peptide-martinize/molecule_0.itp"
+#include "../../../martini_v300/martini_v3.0.0_phospholipids_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_solvents_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+KALP in a POPC bilayer (TS2CG)
+
+[ molecules ]
+; name       number
+molecule_0   1
+; domain 0, upper monolayer
+POPC         70
+; domain 0, lower monolayer
+POPC         68
+W           1326
+CL               4

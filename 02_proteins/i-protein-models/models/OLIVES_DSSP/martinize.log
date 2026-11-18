@@ -1,0 +1,25 @@
+    INFO - general - Read 1 molecules from PDB file /Users/bdahmer/Documents/martini3-tutorials/02_proteins-introduction/i-protein-models/atomistic/CK1d.pdb
+    INFO - step - Guessing the bonds.
+    INFO - general - 1 molecules after guessing bonds
+    INFO - step - Repairing the graph.
+    INFO - general - Applying modification N-ter to residue A-LEU3
+    INFO - general - Applying modification + to residue A-LEU3
+    INFO - general - Applying modification C-ter to residue A-ARG299
+    INFO - general - Applying modification + to residue A-ARG299
+    INFO - step - Dealing with modifications.
+    INFO - general - Identified the modifications ['N-ter'] on residues ['LEU3', 'LEU3', 'LEU3', 'LEU3']
+    INFO - general - Identified the modifications ['C-ter'] on residues ['ARG299', 'ARG299', 'ARG299']
+    INFO - step - Read input.
+    INFO - step - Creating the graph at the target resolution.
+    INFO - general - Applying modification mapping ('C-ter',)
+    INFO - general - Applying modification mapping ('N-ter',)
+    INFO - step - Averaging the coordinates.
+    INFO - step - Applying the links.
+    INFO - step - Placing the charge dummies.
+    INFO - step - Applying position restraints.
+    INFO - step - Sorting atomids
+    INFO - step - Writing output.
+    INFO - general - Please cite: Kroon, P C; Grunewald, F; Barnoud, J; van Tilburg, M; Souza, P C; Wassenaar, T A; Marrink, S J;  elife 2024; 10.7554/elife.90627.2
+    INFO - general - Please cite: McGibbon, R T; Beauchamp, K A; Harrigan, M P; Klein, C; Swails, J M; Hernández, C X; Schwantes, C R; Wang, L; Lane, T J; Pande, V S;  Biophysical Journal 2015; 10.1016/j.bpj.2015.08.015
+    INFO - general - Please cite: Souza, P C T; Alessandri, R; Barnoud, J; Thallmair, S; Faustino, I; Grünewald, F; Patmanidis, I; Abdizadeh, H; Bruininks, B M H; Wassenaar, T A; Kroon, P C; Melcr, J; Nieto, V; Corradi, V; Khan, H M; Domański, J; Javanainen, M; Martinez-Seara, H; Reuter, N; Best, R B; Vattulainen, I; Monticelli, L; Periole, X; Tieleman, D P; de Vries, A H; Marrink, S J;  Nature Methods 2021; 10.1038/s41592-021-01098-3
+    INFO - general - If you drink, don’t drive. Don’t even putt. -- Dean Martin

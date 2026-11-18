@@ -12,6 +12,9 @@
 # (a leading "#" would make the line a comment, so it is escaped)
 \#*#
 
+# grompp echo of the processed mdp (regenerated on every run)
+mdout.mdp
+
 # MDAnalysis offset caches
 .*_offsets.npz
 .*_offsets.lock
@@ -22,3 +25,6 @@ __pycache__/
 
 # oversized files (>100 MB GitHub limit)
 00_dspc-spontaneous-assembly/dspc-md.pdb
+
+# Publication-style figures (rebuild with: bash tools/make_figures_pub.sh)
+figures-publication/

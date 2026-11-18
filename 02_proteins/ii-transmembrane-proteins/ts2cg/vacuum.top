@@ -1,0 +1,12 @@
+; Protein + membrane only, for the vacuum minimization before solvation.
+#include "../../../martini_v300/martini_v3.0.0.itp"
+#include "../peptide-martinize/molecule_0.itp"
+#include "../../../martini_v300/martini_v3.0.0_phospholipids_v1.itp"
+
+[ system ]
+KALP in a POPC bilayer (TS2CG), vacuum
+
+[ molecules ]
+molecule_0   1
+POPC         70
+POPC         68

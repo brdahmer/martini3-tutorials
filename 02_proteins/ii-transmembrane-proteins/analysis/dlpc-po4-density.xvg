@@ -1,0 +1,74 @@
+# This file was created Mon Nov  9 16:18:16 2026
+# Created by:
+#                     :-) GROMACS - gmx density, 2022.2 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/bdahmer/Documents/martini3-tutorials/02_proteins-introduction/ii-transmembrane-proteins/analysis
+# Command line:
+#   gmx density -f ../dlpc/dynamic.xtc -s ../dlpc/dynamic.tpr -n dlpc_index.ndx -d Z -b 3000 -o dlpc-po4-density.xvg
+# gmx density is part of G R O M A C S:
+#
+# God Rules Over Mankind, Animals, Cosmos and Such
+#
+@    title "Partial density"
+@    xaxis  label "Average coordinate (nm)"
+@    yaxis  label "Density (kg m\S-3\N)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "PO4"
+   0.0927695                0
+    0.278308                0
+    0.463847                0
+    0.649386                0
+    0.834925                0
+     1.02046                0
+       1.206                0
+     1.39154                0
+     1.57708                0
+     1.76262                0
+     1.94816                0
+      2.1337        0.0483886
+     2.31924         0.985861
+     2.50478          14.3368
+     2.69031          98.8441
+     2.87585          308.099
+     3.06139          393.483
+     3.24693           207.69
+     3.43247          45.0566
+     3.61801          4.38076
+     3.80355         0.161783
+     3.98909        0.0162174
+     4.17463                0
+     4.36016                0
+      4.5457                0
+     4.73124                0
+     4.91678                0
+     5.10232                0
+     5.28786                0
+      5.4734        0.0485161
+     5.65894         0.323192
+     5.84448          5.40017
+     6.03001          49.4374
+     6.21555          221.571
+     6.40109          387.813
+     6.58663          287.146
+     6.77217          94.5116
+     6.95771          12.2054
+     7.14325         0.840745
+     7.32879        0.0484337
+     7.51433                0
+     7.69986                0
+      7.8854                0
+     8.07094                0
+     8.25648                0
+     8.44202                0
+     8.62756                0
+      8.8131                0
+     8.99864                0
+     9.18418                0

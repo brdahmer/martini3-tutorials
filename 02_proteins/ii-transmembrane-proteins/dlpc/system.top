@@ -1,0 +1,20 @@
+#define WBIAS ; because we're using water bias
+
+#include "../water-bias/martini_v3.0.0.itp"
+#include "../water-bias/molecule_0.itp"
+#include "../../../martini_v300/martini_v3.0.0_phospholipids_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_solvents_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+; name
+Protein in INSANE! Membrane UpperLeaflet>DLPC=1 LowerLeaflet>DLPC=1
+
+
+[ molecules ]
+; name  number
+molecule_0          1
+DLPC            77 ; Defined in 'lipids.dat'.
+DLPC            78 ; Defined in 'lipids.dat'.
+W             2268
+CL               4

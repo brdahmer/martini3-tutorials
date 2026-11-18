@@ -1,3 +1,5 @@
+# DSPC bilayer self-assembly
+
 Reproduction of [Lipid bilayers - Part I – Self-assembly](https://cgmartini.nl/docs/tutorials/Martini3/LipidsI/) tutorial for Martini
 
 This tutorial covers the spontaneous self-assembly of a distearoyl-phosphatidylcholine (DSPC) bilayer and a quick assessment of various properties that characterize lipid bilayers
@@ -24,10 +26,10 @@ gmx solvate -cp 128_noW.gro -cs water.gro -o waterbox.gro -maxsol 768 -radius 0.
 
 First, build the `topology` file (`.top`):
 ```
-#include "./martini_v300/martini_v3.0.0.itp" ; the particle definitions should be included first
-#include "./martini_v300/martini_v3.0.0_ffbonded_v2.itp" ; the general lipid bonded definitions should be included before the specific lipid topologies
-#include "./martini_v300/martini_v3.0.0_phospholipids_PC_v2.itp" ; remaining relevant .itps for molecules
-#include "./martini_v300/martini_v3.0.0_solvents_v1.itp" ; for water
+#include "../martini_v300/martini_v3.0.0.itp" ; the particle definitions should be included first
+#include "../martini_v300/martini_v3.0.0_ffbonded_v2.itp" ; the general lipid bonded definitions should be included before the specific lipid topologies
+#include "../martini_v300/martini_v3.0.0_phospholipids_PC_v2.itp" ; remaining relevant .itps for molecules
+#include "../martini_v300/martini_v3.0.0_solvents_v1.itp" ; for water
 
 [ system ]
 ; Title
@@ -100,6 +102,12 @@ This can be done by profiling the `density` along all three axes; the **normal**
 `echo "2" "3" | gmx density -s dspc-md.tpr -f dspc-md.gro -d Y -ng 2 -o dens_y.xvg`
 `echo "2" "3" | gmx density -s dspc-md.tpr -f dspc-md.gro -d Z -ng 2 -o dens_z.xvg`
 
+<p>
+  <img src="figures/density-x.png" width="32%" alt="Density along x after self-assembly: water drops to zero in the bilayer core">
+  <img src="figures/density-y.png" width="32%" alt="Density along y after self-assembly: lipid and water mixed throughout">
+  <img src="figures/density-z.png" width="32%" alt="Density along z after self-assembly: lipid and water mixed throughout">
+</p>
+
 In our case, the bilayer was formed normal to the **x-axis!**
 
 In cases like this, we can rotate the system with `gmx editconf -rotate`. 
@@ -113,6 +121,12 @@ For the trajectory:
 >Verify the orientation:
 
 `gmx density -s dspc-md.tpr -f dspc-rot-wrapped.gro -d Z -ng 2 -o dens_z_rot.xvg`
+
+<p>
+  <img src="figures/density-x-rotated.png" width="32%" alt="Density along x after rotation: no bilayer structure">
+  <img src="figures/density-y-rotated.png" width="32%" alt="Density along y after rotation: no bilayer structure">
+  <img src="figures/density-z-rotated.png" width="32%" alt="Density along z after rotation: water-free bilayer core, so z is now the normal">
+</p>
 
 
 ### Bilayer equilibration and analysis
@@ -152,7 +166,7 @@ Generally, the area per lipid (APL) can be calculated by dividing the area of th
 `11 12 0`
 `qtgrace -nxy box-xy.xvg`
 
-<img width="618" height="565" alt="Pasted image 20261027150947" src="https://github.com/user-attachments/assets/ec3c7062-cafc-4037-a7e5-12dc17082231" />
+<img src="figures/box-xy.png" width="600" alt="Box length in x and y over 30 ns of equilibration, settling after about 15 ns">
 
 Because of the semi-isotropic coupling, both dimensions vary simultaneously and thus their output is the same. Looking at the graph, we can discard the first 15000 ps from the simulation as non-equilibrated (relaxation time).
 
@@ -166,16 +180,15 @@ np.savetxt('area.xvg', np.column_stack((xy[:,0], areas)))
 quit()
 ```
 
-<img width="793" height="552" alt="Pasted image 20261027151322" src="https://github.com/user-attachments/assets/d9992761-9174-4c31-a37d-7d107c4301d4" />
+<img src="figures/area-per-lipid.png" width="600" alt="Area per lipid over 30 ns of equilibration">
 
 The averages and error estimates can be extracted with the `gmx analyze` module:
 
-`
 `gmx analyze -f area.xvg -ee`
 Or, discarding the first 15000 ps:
 `gmx analyze -f area.xvg -ee -b 15000`
 
-<img width="687" height="620" alt="Pasted image 20261027151958" src="https://github.com/user-attachments/assets/cd94f006-59c8-4803-9208-5392dca727db" />
+<img src="figures/area-per-lipid-error.png" width="600" alt="Block-averaging error estimate of the area per lipid with its analytical fit">
 
 This gives APL of 0.593 ± 0.003 nm². Experimental data using small-angle neutron scattering give an APL of 0.65 ± 0.05 nm². Given the short simulation time, small hydration, and possible assymetry in lipid numbers, this is fine. 
 ___
@@ -190,7 +203,7 @@ q
 ```
 `echo "4" | gmx density -f dspc-eq.xtc -s dspc-eq.tpr -b 15000 -n index.ndx -o p-density.xvg -xvg no`
 
-<img width="759" height="541" alt="Pasted image 20261027152459" src="https://github.com/user-attachments/assets/13decefc-775b-41d5-98fd-73ce0daa7bf9" />
+<img src="figures/phosphate-density.png" width="600" alt="Phosphate density along z with peaks near 0.49 and 3.0 nm">
 
 This gives one peak at ~0.49 nm and ~3.00 nm. The thickness is the gap between the peaks (read from the right peak to the end, in this case, given how the .gro file shows the bilayer—with water in the middle and the lipids at the edges of the periodic box), to a bilayer thickness of ~4.4 nm. Experimental = 4.98 ± 0.15 nm.
 ___
@@ -204,18 +217,21 @@ echo 0 | gmx trjconv -f dspc-eq-pbc.xtc -s dspc-eq.tpr -pbc nojump -o dspc-eq-no
 echo 2 | gmx msd -f dspc-eq-nojump.xtc -s dspc-eq.tpr -lateral z -b 15000 -trestart 20 -o msd.xvg
 ```
 
-<img width="516" height="621" alt="Pasted image 20261027154404" src="https://github.com/user-attachments/assets/7d37a96e-8bd2-42da-bebc-1032ee7a3a44" />
+<img src="figures/msd.png" width="600" alt="Lateral mean squared displacement of DSPC against lag time">
 
 ___
 #### Order parameters
 
 A script to calculate the (second-rank) order parameter, defined as: $P_2 = 1/2 (3 cos^2<θ> − 1)$, where $θ$ is the angle between the bond and the bilayer normal. $P_2$ = 1 means perfect alignment with the bilayer normal, $P_2$ = −0.5 anti-alignment, and $P_2$ = 0 random orientation, is available [here](https://cgmartini.nl/docs/downloads/tools/legacy.html).
 
-Usage: `do-order-gmx5-p3.py <traj file> <tpr file> <initial time> <final time> <skip frames> <bilayer normal - xyz> <#lipids> <lipid type>`
+Usage: `../scripts/do-order-gmx5-p3.py <traj file> <tpr file> <initial time> <final time> <skip frames> <bilayer normal - xyz> <#lipids> <lipid type>`
 
-`python3 do-order-gmx5-p3.py dspc-eq.xtc dspc-eq.tpr 15000 30000 20 0 0 1 128 DSPC`
+`python3 ../scripts/do-order-gmx5-p3.py dspc-eq.xtc dspc-eq.tpr 15000 30000 20 0 0 1 128 DSPC`
 
 The script writes the results in `order.dat` 
-<img width="785" height="79" alt="Pasted image 20261027160832" src="https://github.com/user-attachments/assets/157357f5-ee2a-4c83-bc29-b968ddb53497" />
-and the order parameter profile in `S-profile.dat`, the latter of which we can plot with a custom script:
-<img width="633" height="473" alt="Pasted image 20261027161338" src="https://github.com/user-attachments/assets/be445c9e-c640-4301-9774-bfa7197081ea" />
+
+<img src="figures/order-param-table.png" width="600" alt="Order parameters per bond from order.dat">
+
+and the order parameter profile in `S-profile.dat`, the latter of which we can plot with a custom script (`python3 ../scripts/S-profile-plotter.py`, which saves `figures/S-profile.png`):
+
+<img src="figures/S-profile.png" width="600" alt="Order parameter profile along the DSPC tails">

@@ -1,0 +1,16 @@
+[ nonbond_params ]
+W molecule_0_1 1 0.47000000 1.00000000 ;water bias C
+W molecule_0_2 1 0.47000000 1.00000000 ;water bias C
+W molecule_0_7 1 0.41000000 -1.00000000 ;water bias H
+W molecule_0_8 1 0.47000000 -1.00000000 ;water bias H
+W molecule_0_9 1 0.41000000 -1.00000000 ;water bias H
+W molecule_0_10 1 0.47000000 -1.00000000 ;water bias H
+W molecule_0_11 1 0.41000000 -1.00000000 ;water bias H
+W molecule_0_12 1 0.47000000 -1.00000000 ;water bias H
+W molecule_0_13 1 0.41000000 -1.00000000 ;water bias H
+W molecule_0_14 1 0.47000000 -1.00000000 ;water bias H
+W molecule_0_15 1 0.41000000 -1.00000000 ;water bias H
+W molecule_0_16 1 0.47000000 -1.00000000 ;water bias H
+W molecule_0_17 1 0.41000000 -1.00000000 ;water bias H
+W molecule_0_22 1 0.47000000 1.00000000 ;water bias C
+W molecule_0_23 1 0.47000000 1.00000000 ;water bias C

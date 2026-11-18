@@ -1,0 +1,18 @@
+#include "../../../martini_v300/martini_v3.0.0.itp"
+#include "../../../martini_v300/martini_v3.0.0_ions_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_phospholipids_v1.itp"
+#include "../../../martini_v300/martini_v3.0.0_solvents_v1.itp"
+#include "../peptide-martinize/molecule_0.itp"
+
+[ system ]
+; name
+SimpleMembrane
+
+[ molecules ]
+; name number
+molecule_0    1
+POPC         78
+POPC         79
+W          2410
+NA           26
+CL           30

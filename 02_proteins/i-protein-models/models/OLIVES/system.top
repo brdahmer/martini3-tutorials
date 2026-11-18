@@ -1,0 +1,17 @@
+#include "../../ff/martini_v3.0.0.itp"
+#include "../../ff/martini_v3.0.0_ions_v1.itp"
+#include "../../ff/martini_v3.0.0_solvents_v1.itp"
+#include "./molecule_0.itp"
+
+
+[ system ]
+; name
+Insanely solvated protein.
+
+
+[ molecules ]
+; name  number
+molecule_0 1
+W             8203
+NA              83
+CL              97

@@ -1,0 +1,367 @@
+; This file was generated using the following command:
+; /opt/homebrew/bin/martinize2 -ff martini3001 -f ../kalp-AA.pdb -x kalp.pdb -p backbone -o system.top -ss CCHHHHHHHHHHHHHHHHHHHCC -water-bias -water-bias-eps E:-.5 C:1.0 H:-1.0
+; martinize with vermouth 0.15.0
+; The following sequence of secondary structure 
+; was used for the full system:
+; CCHHHHHHHHHHHHHHHHHHHCC
+
+; Please cite the following papers:
+; Souza, P C T; Alessandri, R; Barnoud, J; Thallmair, S; Faustino, I; Grünewald, F; Patmanidis, I; Abdizadeh, H; Bruininks, B M H; Wassenaar, T A; Kroon, P C; Melcr, J; Nieto, V; Corradi, V; Khan, H M; Domański, J; Javanainen, M; Martinez-Seara, H; Reuter, N; Best, R B; Vattulainen, I; Monticelli, L; Periole, X; Tieleman, D P; de Vries, A H; Marrink, S J;  Nature Methods 2021; 10.1038/s41592-021-01098-3
+; Kroon, P C; Grunewald, F; Barnoud, J; van Tilburg, M; Souza, P C; Wassenaar, T A; Marrink, S J;  elife 2024; 10.7554/elife.90627.2
+; Souza, P C T; Araujo, L P B; Brasnett, C; Moreira, R A; Grunewald, F; Park, P; Wang, L; Razmazma, H; Borges-Araujo, A C; Cofas-Vargas, L F; Monticelli, L; Mera-Adasme, R; Melo, M N; Wu, S; Marrink, S J; Poma, A B; Thallmair, S;  Nature Communications 2025; 10.1038/s41467-025-58719-0
+
+#ifndef POSRES_FC
+#define POSRES_FC 1000
+#endif
+
+[ moleculetype ]
+molecule_0 1
+
+[ atoms ]
+ 1 Q5             1 LYS BB   1   1    
+ 2 SC3            1 LYS SC1  2 0.0    
+ 3 SQ4p           1 LYS SC2  3 1.0    
+ 4 molecule_0_1   1 LYS CA  51   0 0.0
+ 5 P2             2 LYS BB   4 0.0    
+ 6 SC3            2 LYS SC1  5 0.0    
+ 7 SQ4p           2 LYS SC2  6 1.0    
+ 8 molecule_0_2   2 LYS CA  52   0 0.0
+ 9 SP2            3 ALA BB   7 0.0    
+10 TC3            3 ALA SC1  8 0.0    
+11 molecule_0_3   3 ALA CA  53   0 0.0
+12 P2             4 LEU BB   9 0.0    
+13 SC2            4 LEU SC1 10 0.0    
+14 molecule_0_4   4 LEU CA  54   0 0.0
+15 SP2            5 ALA BB  11 0.0    
+16 TC3            5 ALA SC1 12 0.0    
+17 molecule_0_5   5 ALA CA  55   0 0.0
+18 P2             6 LEU BB  13 0.0    
+19 SC2            6 LEU SC1 14 0.0    
+20 molecule_0_6   6 LEU CA  56   0 0.0
+21 SP2            7 ALA BB  15 0.0    
+22 TC3            7 ALA SC1 16 0.0    
+23 molecule_0_7   7 ALA CA  57   0 0.0
+24 P2             8 LEU BB  17 0.0    
+25 SC2            8 LEU SC1 18 0.0    
+26 molecule_0_8   8 LEU CA  58   0 0.0
+27 SP2            9 ALA BB  19 0.0    
+28 TC3            9 ALA SC1 20 0.0    
+29 molecule_0_9   9 ALA CA  59   0 0.0
+30 P2            10 LEU BB  21 0.0    
+31 SC2           10 LEU SC1 22 0.0    
+32 molecule_0_10 10 LEU CA  60   0 0.0
+33 SP2           11 ALA BB  23 0.0    
+34 TC3           11 ALA SC1 24 0.0    
+35 molecule_0_11 11 ALA CA  61   0 0.0
+36 P2            12 LEU BB  25 0.0    
+37 SC2           12 LEU SC1 26 0.0    
+38 molecule_0_12 12 LEU CA  62   0 0.0
+39 SP2           13 ALA BB  27 0.0    
+40 TC3           13 ALA SC1 28 0.0    
+41 molecule_0_13 13 ALA CA  63   0 0.0
+42 P2            14 LEU BB  29 0.0    
+43 SC2           14 LEU SC1 30 0.0    
+44 molecule_0_14 14 LEU CA  64   0 0.0
+45 SP2           15 ALA BB  31 0.0    
+46 TC3           15 ALA SC1 32 0.0    
+47 molecule_0_15 15 ALA CA  65   0 0.0
+48 P2            16 LEU BB  33 0.0    
+49 SC2           16 LEU SC1 34 0.0    
+50 molecule_0_16 16 LEU CA  66   0 0.0
+51 SP2           17 ALA BB  35 0.0    
+52 TC3           17 ALA SC1 36 0.0    
+53 molecule_0_17 17 ALA CA  67   0 0.0
+54 P2            18 LEU BB  37 0.0    
+55 SC2           18 LEU SC1 38 0.0    
+56 molecule_0_18 18 LEU CA  68   0 0.0
+57 SP2           19 ALA BB  39 0.0    
+58 TC3           19 ALA SC1 40 0.0    
+59 molecule_0_19 19 ALA CA  69   0 0.0
+60 P2            20 LEU BB  41 0.0    
+61 SC2           20 LEU SC1 42 0.0    
+62 molecule_0_20 20 LEU CA  70   0 0.0
+63 SP2           21 ALA BB  43 0.0    
+64 TC3           21 ALA SC1 44 0.0    
+65 molecule_0_21 21 ALA CA  71   0 0.0
+66 P2            22 LYS BB  45 0.0    
+67 SC3           22 LYS SC1 46 0.0    
+68 SQ4p          22 LYS SC2 47 1.0    
+69 molecule_0_22 22 LYS CA  72   0 0.0
+70 Q5            23 LYS BB  48  -1    
+71 SC3           23 LYS SC1 49 0.0    
+72 SQ4p          23 LYS SC2 50 1.0    
+73 molecule_0_23 23 LYS CA  73   0 0.0
+
+[ position_restraints ]
+#ifdef POSRES
+ 1 1 POSRES_FC POSRES_FC POSRES_FC
+ 5 1 POSRES_FC POSRES_FC POSRES_FC
+ 9 1 POSRES_FC POSRES_FC POSRES_FC
+12 1 POSRES_FC POSRES_FC POSRES_FC
+15 1 POSRES_FC POSRES_FC POSRES_FC
+18 1 POSRES_FC POSRES_FC POSRES_FC
+21 1 POSRES_FC POSRES_FC POSRES_FC
+24 1 POSRES_FC POSRES_FC POSRES_FC
+27 1 POSRES_FC POSRES_FC POSRES_FC
+30 1 POSRES_FC POSRES_FC POSRES_FC
+33 1 POSRES_FC POSRES_FC POSRES_FC
+36 1 POSRES_FC POSRES_FC POSRES_FC
+39 1 POSRES_FC POSRES_FC POSRES_FC
+42 1 POSRES_FC POSRES_FC POSRES_FC
+45 1 POSRES_FC POSRES_FC POSRES_FC
+48 1 POSRES_FC POSRES_FC POSRES_FC
+51 1 POSRES_FC POSRES_FC POSRES_FC
+54 1 POSRES_FC POSRES_FC POSRES_FC
+57 1 POSRES_FC POSRES_FC POSRES_FC
+60 1 POSRES_FC POSRES_FC POSRES_FC
+63 1 POSRES_FC POSRES_FC POSRES_FC
+66 1 POSRES_FC POSRES_FC POSRES_FC
+70 1 POSRES_FC POSRES_FC POSRES_FC
+#endif
+
+[ bonds ]
+; Backbone bonds
+ 1  5 1 0.350 4000
+66 70 1 0.350 4000
+
+; Side chain bonds
+ 1  2 1 0.330 5000
+ 2  3 1 0.360 5000
+ 5  6 1 0.330 5000
+ 6  7 1 0.360 5000
+12 13 1 0.363 7500
+18 19 1 0.363 7500
+24 25 1 0.363 7500
+30 31 1 0.363 7500
+36 37 1 0.363 7500
+42 43 1 0.363 7500
+48 49 1 0.363 7500
+54 55 1 0.363 7500
+60 61 1 0.363 7500
+66 67 1 0.330 5000
+67 68 1 0.360 5000
+70 71 1 0.330 5000
+71 72 1 0.360 5000
+
+#ifdef FLEXIBLE
+; Side chain bonds
+ 9 10 1 0.270 1000000
+15 16 1 0.270 1000000
+21 22 1 0.270 1000000
+27 28 1 0.270 1000000
+33 34 1 0.270 1000000
+39 40 1 0.270 1000000
+45 46 1 0.270 1000000
+51 52 1 0.270 1000000
+57 58 1 0.270 1000000
+63 64 1 0.270 1000000
+#endif
+
+[ constraints ]
+; Backbone bonds
+ 5  9 1 0.33
+ 9 12 1 0.310
+12 15 1 0.310
+15 18 1 0.310
+18 21 1 0.310
+21 24 1 0.310
+24 27 1 0.310
+27 30 1 0.310
+30 33 1 0.310
+33 36 1 0.310
+36 39 1 0.310
+39 42 1 0.310
+42 45 1 0.310
+45 48 1 0.310
+48 51 1 0.310
+51 54 1 0.310
+54 57 1 0.310
+57 60 1 0.310
+60 63 1 0.310
+63 66 1 0.33
+
+#ifndef FLEXIBLE
+; Side chain bonds
+ 9 10 1 0.270
+15 16 1 0.270
+21 22 1 0.270
+27 28 1 0.270
+33 34 1 0.270
+39 40 1 0.270
+45 46 1 0.270
+51 52 1 0.270
+57 58 1 0.270
+63 64 1 0.270
+#endif
+
+[ virtual_sitesn ]
+; Virtual go site
+ 4 1  1
+ 8 1  5
+11 1  9
+14 1 12
+17 1 15
+20 1 18
+23 1 21
+26 1 24
+29 1 27
+32 1 30
+35 1 33
+38 1 36
+41 1 39
+44 1 42
+47 1 45
+50 1 48
+53 1 51
+56 1 54
+59 1 57
+62 1 60
+65 1 63
+69 1 66
+73 1 70
+
+[ angles ]
+; BBB angles
+ 1  5  9 10 127 20
+ 5  9 12 10 127 20
+ 9 12 15 2 96 700
+12 15 18 2 96 700
+15 18 21 2 96 700
+18 21 24 2 96 700
+21 24 27 2 96 700
+24 27 30 2 96 700
+27 30 33 2 96 700
+30 33 36 2 96 700
+33 36 39 2 96 700
+36 39 42 2 96 700
+39 42 45 2 96 700
+42 45 48 2 96 700
+45 48 51 2 96 700
+48 51 54 2 96 700
+51 54 57 2 96 700
+54 57 60 2 96 700
+57 60 63 2 96 700
+60 63 66 10 127 20
+63 66 70 10 127 20
+
+; BBS angles regular martini
+ 1  5  6 2 100 25
+ 5  9 10 2 100 25
+ 9 12 13 2 100 25
+12 15 16 2 100 25
+15 18 19 2 100 25
+18 21 22 2 100 25
+21 24 25 2 100 25
+24 27 28 2 100 25
+27 30 31 2 100 25
+30 33 34 2 100 25
+33 36 37 2 100 25
+36 39 40 2 100 25
+39 42 43 2 100 25
+42 45 46 2 100 25
+45 48 49 2 100 25
+48 51 52 2 100 25
+51 54 55 2 100 25
+54 57 58 2 100 25
+57 60 61 2 100 25
+60 63 64 2 100 25
+63 66 67 2 100 25
+66 70 71 2 100 25
+
+; First SBB regular martini
+ 2  1  5 2 100 25
+
+; SC-BB-BB and BB-BB-SC scFix
+ 2  1  5 10 100 15 ; SC-BB-BB
+ 1  5  6 10 100 15 ; BB-BB-SC
+ 6  5  9 10 100 15 ; SC-BB-BB
+ 5  9 10 10 100 15 ; BB-BB-SC
+10  9 12 10 100 15 ; SC-BB-BB
+ 9 12 13 10 100 15 ; BB-BB-SC
+13 12 15 10 100 15 ; SC-BB-BB
+12 15 16 10 100 15 ; BB-BB-SC
+16 15 18 10 100 15 ; SC-BB-BB
+15 18 19 10 100 15 ; BB-BB-SC
+19 18 21 10 100 15 ; SC-BB-BB
+18 21 22 10 100 15 ; BB-BB-SC
+22 21 24 10 100 15 ; SC-BB-BB
+21 24 25 10 100 15 ; BB-BB-SC
+25 24 27 10 100 15 ; SC-BB-BB
+24 27 28 10 100 15 ; BB-BB-SC
+28 27 30 10 100 15 ; SC-BB-BB
+27 30 31 10 100 15 ; BB-BB-SC
+31 30 33 10 100 15 ; SC-BB-BB
+30 33 34 10 100 15 ; BB-BB-SC
+34 33 36 10 100 15 ; SC-BB-BB
+33 36 37 10 100 15 ; BB-BB-SC
+37 36 39 10 100 15 ; SC-BB-BB
+36 39 40 10 100 15 ; BB-BB-SC
+40 39 42 10 100 15 ; SC-BB-BB
+39 42 43 10 100 15 ; BB-BB-SC
+43 42 45 10 100 15 ; SC-BB-BB
+42 45 46 10 100 15 ; BB-BB-SC
+46 45 48 10 100 15 ; SC-BB-BB
+45 48 49 10 100 15 ; BB-BB-SC
+49 48 51 10 100 15 ; SC-BB-BB
+48 51 52 10 100 15 ; BB-BB-SC
+52 51 54 10 100 15 ; SC-BB-BB
+51 54 55 10 100 15 ; BB-BB-SC
+55 54 57 10 100 15 ; SC-BB-BB
+54 57 58 10 100 15 ; BB-BB-SC
+58 57 60 10 100 15 ; SC-BB-BB
+57 60 61 10 100 15 ; BB-BB-SC
+61 60 63 10 100 15 ; SC-BB-BB
+60 63 64 10 100 15 ; BB-BB-SC
+64 63 66 10 100 15 ; SC-BB-BB
+63 66 67 10 100 15 ; BB-BB-SC
+67 66 70 10 100 15 ; SC-BB-BB
+66 70 71 10 100 15 ; BB-BB-SC
+
+; Side chain angles
+ 1  2  3 2 180.000 25.0
+ 5  6  7 2 180.000 25.0
+66 67 68 2 180.000 25.0
+70 71 72 2 180.000 25.0
+
+[ dihedrals ]
+ 9 12 15 18 1 -120 400 1
+12 15 18 21 1 -120 400 1
+15 18 21 24 1 -120 400 1
+18 21 24 27 1 -120 400 1
+21 24 27 30 1 -120 400 1
+24 27 30 33 1 -120 400 1
+27 30 33 36 1 -120 400 1
+30 33 36 39 1 -120 400 1
+33 36 39 42 1 -120 400 1
+36 39 42 45 1 -120 400 1
+39 42 45 48 1 -120 400 1
+42 45 48 51 1 -120 400 1
+45 48 51 54 1 -120 400 1
+48 51 54 57 1 -120 400 1
+51 54 57 60 1 -120 400 1
+54 57 60 63 1 -120 400 1
+
+; SC-BB-BB-SC scFix
+ 2  1  5  6 1 -111.6 75 1 ; SC-BB-BB-SC
+ 6  5  9 10 1 -110.8 75 1 ; SC-BB-BB-SC
+10  9 12 13 1 -147.7 75 1 ; SC-BB-BB-SC
+13 12 15 16 1 -128.0 75 1 ; SC-BB-BB-SC
+16 15 18 19 1 -147.7 75 1 ; SC-BB-BB-SC
+19 18 21 22 1 -128.0 75 1 ; SC-BB-BB-SC
+22 21 24 25 1 -147.7 75 1 ; SC-BB-BB-SC
+25 24 27 28 1 -128.0 75 1 ; SC-BB-BB-SC
+28 27 30 31 1 -147.7 75 1 ; SC-BB-BB-SC
+31 30 33 34 1 -128.0 75 1 ; SC-BB-BB-SC
+34 33 36 37 1 -147.7 75 1 ; SC-BB-BB-SC
+37 36 39 40 1 -128.0 75 1 ; SC-BB-BB-SC
+40 39 42 43 1 -147.7 75 1 ; SC-BB-BB-SC
+43 42 45 46 1 -128.0 75 1 ; SC-BB-BB-SC
+46 45 48 49 1 -147.7 75 1 ; SC-BB-BB-SC
+49 48 51 52 1 -128.0 75 1 ; SC-BB-BB-SC
+52 51 54 55 1 -147.7 75 1 ; SC-BB-BB-SC
+55 54 57 58 1 -128.0 75 1 ; SC-BB-BB-SC
+58 57 60 61 1 -147.7 75 1 ; SC-BB-BB-SC
+61 60 63 64 1 -128.0 75 1 ; SC-BB-BB-SC
+64 63 66 67 1 -133.7 75 1 ; SC-BB-BB-SC
+67 66 70 71 1 -131.1 75 1 ; SC-BB-BB-SC
+
