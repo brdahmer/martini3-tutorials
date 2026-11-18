@@ -5,7 +5,7 @@ Reproduction of [Proteins IIa – Setting up transmembrane peptide simulations](
 This tutorial covers:
 
 1. Coarse-graining a transmembrane peptide with `martinize2`, with and without water biasing
-2. Building the membrane system in four different ways (self-assembly, `Insane`, `COBY` and `TS2CG`)
+2. Building the membrane system in three different ways (self-assembly, `Insane` and `COBY`)
 3. Measuring the tilt of the peptide in the bilayer
 4. Two extra exercises: a thinner DLPC bilayer and a KALP dimer
 
@@ -13,8 +13,7 @@ The system is a single 23-residue KALP peptide (a Leu/Ala helix capped with lysi
 
 Results:
 
--  `Insane`, `COBY` and `TS2CG` all settle the tilt at ~15° (3–20 ns), as they use the same starting coordinates.
-- The starting orientation does matter for 20 ns runs, though. A TS2CG run started upright averaged 27°
+- `Insane` and `COBY` both settle the tilt at ~15° (3–20 ns), as they use the same starting coordinates.
 - DLPC is ~0.5 nm thinner than POPC, but the tilt stayed at ~15°
 - Two KALP peptides didn't dimerize in 250 ns. The closest they got was 2.3 nm
 
@@ -32,14 +31,13 @@ ii-transmembrane-proteins/
 ├── self-assembly/         bilayer self-assembly
 ├── insane/                pre-built bilayer with Insane (main route)
 ├── coby/                  pre-built bilayer with COBY
-├── ts2cg/                 pre-built bilayer with TS2CG 2.0
 ├── dlpc/                  KALP in DLPC
 ├── dimer/                 two KALP peptides
 ├── analysis/              index files, .xvg files and plotting scripts
 └── figures/               plots used in this README
 ```
 
-Besides GROMACS, we need `vermouth` (for `martinize2`), `insane` and `COBY`, all installable with `pip`. TS2CG 2.0 is installed with `pip install git+https://github.com/weria-pezeshkian/TS2CG-v2.0`. The plotting scripts use `numpy` and `matplotlib`.
+Besides GROMACS, we need `vermouth` (for `martinize2`), `insane` and `COBY`, all installable with `pip`. The plotting scripts use `numpy` and `matplotlib`.
 
 The tutorial files can be downloaded [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/KALP_ProteinsII_Tutorial.zip). The zip has `kalp-AA.pdb`, the Martini3 `.itp` files, `POPC.gro`, `water.gro` and the `minimization`/`equilibration`/`dynamic.mdp` files (the tutorial page itself doesn't show the `.mdp` contents, bear that in mind).
 
@@ -198,88 +196,6 @@ The page gives no MD commands for this route, so reuse the Insane ones. I ended 
 
 ___
 
-### TS2CG 2.0
-
-Had a lot of problems with this one to be honest; might revisit or stick to Insane.
-
-In `ts2cg/`:
-
-1. Make `kalp.gro` and change its first line to `KALP`, because the name has to match the protein name in `input.str` (manually, or):
-
-```
-gmx editconf -f kalp.pdb -o kalp.gro
-sed -i '' '1s/.*/KALP/' kalp.gro
-```
-
-TS2CG places the peptide in whatever orientation the `.gro` has. Here the helix is tilted ~55° from z, the same as in the Insane and COBY routes, which keeps the tilt comparison fair (see the tilt analysis). To start it upright instead, align it first with `gmx editconf -princ` and then `-rotate 0 90 0`.
-
-2. Write `input.str`:
-
-```
-include kalp.gro
-
-[Lipids List]
-Domain      0
-POPC        1   1   0.64
-End
-
-[Protein List]
-KALP 1   0.3   0   0   -1.9
-End
-
-[Shape Data]
-ShapeType    Flat
-Box    7    7    9
-Density      2     2
-Thickness    3.8
-WallRange    0     1    0    1
-End
-```
-
-3. Build the membrane:
-
-`TS2CG PCG -str input.str -LLIB Martini3.LIB -defout system -function analytical_shape`
-
-`Martini3.LIB` comes from the TS2CG repo (`Tutorials/tut1/files/`). Without `-LLIB`, I believe TS2CG falls back to a built-in Martini2 library, where the POPC tail beads are `G1A G2A D3A D4A` instead of the Martini3 `C1A D2A C3A C4A`, and `grompp` complains about it a lot.
-
-In the `[Protein List]` line, the third field (`0.3`) is a ratio: TS2CG places `membrane area / protein area × ratio` copies of the peptide, rounded down, where the protein area is the circle around the peptide seen from above. The tilted KALP covers ~10.3 nm², so anything between 0.25 and 0.4 gives exactly one peptide (the tutorial's draft value of 0.01 gives zero). An upright helix covers only ~1.8 nm² and needs ~0.05. The last field (`-1.9`) moves the peptide down by 1.9 nm; without it, the peptide is centered on the upper leaflet instead of the middle of the bilayer. TS2CG also removes lipids around the peptide, which leaves 70 POPC in the upper leaflet and 68 in the lower one. The tutorial does say to finetune the numbers a bit until it works.
-
-4. Minimize the membrane in vacuum before solvating. This one is important: TS2CG builds each POPC only ~0.6 nm long, so the two leaflets start with an empty gap between them. Use a topology with only the peptide and the lipids (`vacuum.top`):
-
-```
-gmx grompp -f minimization.mdp -c system.gro -p vacuum.top -o vacuum.tpr
-gmx mdrun -deffnm vacuum -v
-```
-
-The minimization stretches the lipids to ~1.8 nm, but the phosphate layers still end up ~5 nm apart instead of ~4.
-
-5. Solvate:
-
-`TS2CG SOL -in vacuum.gro -o solvated_TS2CG-SOL.gro -tem water.gro`
-
-SOL's output has two problems. First, it fills the leftover gap between the leaflets with water: here, 498 of the 1828 water beads. Delete every `W` bead between the two phosphate (PO4) planes. My first attempt skipped step 4 and ended up with 942 water beads in the core; the membrane split in two during equilibration and the peptide tumbled freely. Second, SOL cuts every atom name to 2 characters (`SC1` → `SC`, `PO4` → `PO`), so `grompp` complains about mismatched names. Keep the names from `vacuum.gro`.
-
-6. Write `system.top`. TS2CG's version has no `#include` lines and calls the peptide `KALP`, while the `martinize2` `.itp` calls it `molecule_0`. Set the `W` count to SOL's count minus the water removed from the core, then neutralize the +4 charge:
-
-```
-gmx grompp -f minimization.mdp -c solvated.gro -p system.top -o genion.tpr
-echo W | gmx genion -s genion.tpr -o ions.gro -p system.top -pname NA -nname CL -neutral
-```
-
-7. Minimize, equilibrate and run production as in the Insane route, starting from `ions.gro`. The `make_ndx` input is the same (selecting the groups by name also works):
-
-```
-"Protein" | "POPC"
-"W" | "ION"
-name 16 Membrane
-name 17 Solvent
-q
-```
-
-Over 3–20 ns of production, the bilayer was 3.86 ± 0.05 nm thick (phosphate to phosphate), the same as the Insane and COBY runs, with at most 7 water beads left in the core.
-
-___
-
 ### Analysis – Tilt
 
 The tilt is the angle between the z-axis (normal) and a vector going from the backbone (`BB`) bead of residue 3 to the `BB` bead of residue 21. The atom numbers of those beads depend on the peptide model:
@@ -288,7 +204,6 @@ The tilt is the angle between the z-axis (normal) and a vector going from the ba
 |---|---|---|---|
 | Insane | water bias (`water-bias/`) | 73 | `a 9 63` |
 | COBY | plain (`peptide-martinize/`) | 50 | `a 7 43` |
-| TS2CG | plain (`peptide-martinize/`) | 50 | `a 7 43` |
 
 The tutorial's `a 7 43` only works for the 50-bead peptide. In the water-biased peptide, atoms 7 and 43 are side-chain beads (Lys 2 `SC2` and Leu 14 `SC1`). For Insane:
 
@@ -299,23 +214,20 @@ gmx gangle -f ../insane/dynamic.xtc -s ../insane/dynamic.tpr -g1 vector -group1 
 xmgrace insane-angles.xvg
 ```
 
-For COBY and TS2CG, use `a 7 43` and `-group1 a_7_43`.
+For COBY, use `a 7 43` and `-group1 a_7_43`.
 
 `gmx gangle` gives angles around 160° because the vector points down along z, so the tilt is 180° minus the angle. Using the wrong pair (7–43) on the Insane run gives a tilt ~2° lower than the right one (9–63).
 
 `python3 plot_tilt.py` plots all of them into `figures/tilt.png` (the bottom panel is the DLPC run, see below).
 
-<img src="figures/tilt.png" width="700" alt="KALP helix tilt over 20 ns in four panels: POPC built with Insane, COBY and TS2CG, and DLPC built with Insane. All start between 50 and 60 degrees and settle around 15 degrees within about 3 ns.">
+<img src="figures/tilt.png" width="700" alt="KALP helix tilt over 20 ns in three panels: POPC built with Insane and COBY, and DLPC built with Insane. All start around 50 degrees and settle around 15 degrees within about 3 ns.">
 
 | Route | Tilt at start | Mean, full run | Mean, 3–20 ns |
 |---|---|---|---|
 | Insane (water bias) | 51° | 17.8° ± 9.1° | 15.7° ± 7.3° |
 | COBY | 52° | 17.8° ± 8.9° | 15.1° ± 5.8° |
-| TS2CG | 58° | 18.1° ± 9.8° | 15.2° ± 5.9° |
 
-All three start from the peptide as written by `gmx editconf` and `martinize2`, tilted 50–60° from z, and relax within ~3 ns, so the last column leaves those out. After that, all three sit at ~15°, so the way the membrane is built doesn't change the tilt. The Insane run uses water biasing and the other two don't, which made no visible difference here either.
-
-The starting orientation, on the other hand, does matter for runs this short. An earlier TS2CG run started with the helix along z (~10° tilt) and averaged 27.0° ± 7.4° over 3–20 ns, ~12° more than the others, even though its bilayer had the same thickness and area per lipid. Starting from the same tilted structure removed the difference. With single 20 ns runs, it's better to compare routes from the same starting structure, or to run repeats with different starting velocities.
+Both start from the peptide as written by `gmx editconf` and `martinize2`, tilted ~50° from z, and relax within ~3 ns, so the last column leaves those out. After that, both sit at ~15°, so the way the membrane is built doesn't change the tilt. The Insane run uses water biasing and the COBY one doesn't, which made no visible difference here either.
 ___
 ### Going further: KALP in DLPC
 
@@ -500,5 +412,5 @@ ___
 
 - The tutorial page doesn't give software versions or the `.mdp` contents, so get the `.mdp` files from the zip
 - The page uses bead indices 7 and 43 for the tilt vector (residues 3–21). Those only work for the 50-bead peptide; the water-biased one needs 9 and 63
-- Water biasing should only be used alongside a control run without it, and reported. Here, the Insane, DLPC and dimer runs use water biasing and the COBY and TS2CG runs don't, so the route comparison works as a rough control
+- Water biasing should only be used alongside a control run without it, and reported. Here, the Insane, DLPC and dimer runs use water biasing and the COBY run doesn't, so the route comparison works as a rough control
 - Every number here comes from a single replica, and differences of a few degrees in tilt are within the run-to-run noise

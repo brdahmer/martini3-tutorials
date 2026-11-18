@@ -20,7 +20,6 @@ from pubstyle import PALETTE, apply_style, finalize  # noqa: E402
 ROUTES = [
     ("POPC, Insane", "insane-angles.xvg", PALETTE["blue_main"]),
     ("POPC, COBY", "coby-angles.xvg", PALETTE["teal"]),
-    ("POPC, TS2CG", "ts2cg-angles.xvg", PALETTE["red_strong"]),
     ("DLPC, Insane", "dlpc-angles.xvg", PALETTE["violet"]),
 ]
 T_EQ = 3.0  # ns excluded from the average
@@ -38,9 +37,9 @@ def running_mean(y, n):
 
 
 apply_style(font_size=15, axes_linewidth=2.0)
-fig, axes = plt.subplots(2, 2, figsize=(10, 6.4), sharex=True, sharey=True)
+fig, axes = plt.subplots(len(ROUTES), 1, figsize=(7.5, 7.8), sharex=True, sharey=True)
 
-for ax, letter, (name, path, color) in zip(axes.flat, "abcd", ROUTES):
+for ax, letter, (name, path, color) in zip(axes, "abc", ROUTES):
     t, tilt = load(path)
     keep = t >= T_EQ
     mean, sd = tilt[keep].mean(), tilt[keep].std()
@@ -58,9 +57,8 @@ for ax, letter, (name, path, color) in zip(axes.flat, "abcd", ROUTES):
     ax.set_ylim(0, 60)
     ax.set_yticks([0, 20, 40, 60])
 
-for ax in axes[-1]:
-    ax.set_xlabel("Time (ns)")
-for ax in axes[:, 0]:
+axes[-1].set_xlabel("Time (ns)")
+for ax in axes:
     ax.set_ylabel("Tilt (°)")
 
 finalize(fig, os.path.join("..", "figures-publication", "tilt"), pad=1.0)
