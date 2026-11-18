@@ -99,7 +99,9 @@ If a bilayer did form during the simulation, check if it is normal to the **z-ax
 This can be done by profiling the `density` along all three axes; the **normal** is found in whatever plot shows high lipid content where water is low (water-free region in a hydrophobic core)
 
 `echo "2" "3" | gmx density -s dspc-md.tpr -f dspc-md.gro -d X -ng 2 -o dens_x.xvg`
+
 `echo "2" "3" | gmx density -s dspc-md.tpr -f dspc-md.gro -d Y -ng 2 -o dens_y.xvg`
+
 `echo "2" "3" | gmx density -s dspc-md.tpr -f dspc-md.gro -d Z -ng 2 -o dens_z.xvg`
 
 <p>
