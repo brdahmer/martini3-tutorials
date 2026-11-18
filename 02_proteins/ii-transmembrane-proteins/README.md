@@ -257,7 +257,7 @@ The minimization stretches the lipids to ~1.8 nm, but the phosphate layers still
 
 `TS2CG SOL -in vacuum.gro -o solvated_TS2CG-SOL.gro -tem water.gro`
 
-SOL's output has two problems. First, it fills the leftover gap between the leaflets with water: here, 498 of the 1828 water beads. Delete every `W` bead between the two phosphate (PO4) planes. My first attempt skipped step 4 and ended up with 942 water beads in the core; the membrane split in two during equilibration and the peptide tumbled freely (that run is kept in `ts2cg/failed-run-water-in-core/`). Second, SOL cuts every atom name to 2 characters (`SC1` → `SC`, `PO4` → `PO`), so `grompp` complains about mismatched names. Keep the names from `vacuum.gro` and the coordinates from SOL's output. SOL also wraps some membrane atoms back into the box, which is harmless.
+SOL's output has two problems. First, it fills the leftover gap between the leaflets with water: here, 498 of the 1828 water beads. Delete every `W` bead between the two phosphate (PO4) planes. My first attempt skipped step 4 and ended up with 942 water beads in the core; the membrane split in two during equilibration and the peptide tumbled freely. Second, SOL cuts every atom name to 2 characters (`SC1` → `SC`, `PO4` → `PO`), so `grompp` complains about mismatched names. Keep the names from `vacuum.gro`.
 
 6. Write `system.top`. TS2CG's version has no `#include` lines and calls the peptide `KALP`, while the `martinize2` `.itp` calls it `molecule_0`. Set the `W` count to SOL's count minus the water removed from the core, then neutralize the +4 charge:
 
