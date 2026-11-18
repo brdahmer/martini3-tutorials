@@ -25,7 +25,6 @@ Covers the set up of different Martini 3 structure bias models for the protein k
 
 5. Subsequently, check the protonation state with, for example, the [H++ webserver](http://newbiophysics.cs.vt.edu/H++/index.php) or [PROPKA](https://github.com/jensengroup/propka-3.0).
 
-Note: the H++ check is only a check. `CK1d.pdb` is the (unprotonated) SWISS-MODEL structure, not the H++ output. The H++ `.result.pdb` is really PQR-flavoured (charge and radius in the occupancy/B-factor columns, no chain ID), and `martinize2` fails on it with `ValueError: could not convert string to float`. Martini3 fixes the charged residues (Lys, Arg, Asp, Glu) and treats His as neutral, so the H++ result is only worth acting on if it predicts something unusual (e.g. HIP, or a buried Asp/Glu predicted neutral). For this run (pH 6.5, 0.15 M) H++ gives a total charge of 14, which matches the net charge of the CG protein below.
 ___
 ### Working Directory
 
