@@ -4,7 +4,7 @@ Reproduction of [Tutorial I.I: Setup of Martini 3 Protein Structure Models](http
 
 Covers the set up of different Martini 3 structure bias models for the protein kinase casein kinase delta 1 (CK1δ, PDB ID: 4JJR)
 
-> Status: the setup is done for all five models. The production runs (250 ns × 3 replicas each) were too heavy for my laptop, so I ran them on a different PC. Results and analysis still to come.
+> Covers only the setup so far!
 
 4JJR is crystallized as a dimer. While the official tutorial provides a clean initial structure, it also shows how to produce a valid `.pdb` file as follows:
 
