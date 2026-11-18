@@ -111,11 +111,17 @@ This can be done by profiling the `density` along all three axes; the **normal**
 In our case, the bilayer was formed normal to the **x-axis!**
 
 In cases like this, we can rotate the system with `gmx editconf -rotate`. 
+
 For a normal along **x**, we rotate 90 degrees along **y**. 
+
 `gmx editconf -f dspc-md.gro -o dspc-rot.gro -rotate 0 90 0`
+
 For a normal along **y**, we rotate 90 degrees along **x**:
+
 `gmx editconf -f dspc-md.gro -o dspc-rot.gro -rotate 90 0 0`
+
 For the trajectory:
+
 `gmx trjconv -s dspc-md.tpr -f dspc-rot.gro -o dspc-rot-wrapped.gro -pbc mol -ur compact`
 
 >Verify the orientation:
