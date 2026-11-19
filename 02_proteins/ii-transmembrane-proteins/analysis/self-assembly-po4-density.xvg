@@ -1,0 +1,74 @@
+# This file was created Wed Nov 18 21:31:15 2026
+# Created by:
+#                     :-) GROMACS - gmx density, 2022.2 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/bdahmer/Documents/martini3-tutorials/02_proteins/ii-transmembrane-proteins/analysis
+# Command line:
+#   gmx density -f ../self-assembly/dynamic.xtc -s ../self-assembly/dynamic.tpr -n self-assembly_index.ndx -d Z -b 3000 -o self-assembly-po4-density.xvg
+# gmx density is part of G R O M A C S:
+#
+# Good ROcking Metal Altar for Chronical Sinners
+#
+@    title "Partial density"
+@    xaxis  label "Average coordinate (nm)"
+@    yaxis  label "Density (kg m\S-3\N)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "PO4"
+   0.0988086                0
+    0.296426                0
+    0.494043                0
+     0.69166                0
+    0.889277                0
+     1.08689                0
+     1.28451                0
+     1.48213                0
+     1.67975                0
+     1.87736                0
+     2.07498          9.82293
+      2.2726          32.2981
+     2.47022          103.977
+     2.66783          250.123
+     2.86545          281.846
+     3.06307          212.893
+     3.26068          132.039
+      3.4583          40.0282
+     3.65592          10.5272
+     3.85354          1.40763
+     4.05115                0
+     4.24877                0
+     4.44639                0
+       4.644                0
+     4.84162                0
+     5.03924                0
+     5.23686                0
+     5.43447                0
+     5.63209                0
+     5.82971                0
+     6.02732                0
+     6.22494          2.10642
+     6.42256          22.4807
+     6.62018          94.8313
+     6.81779           262.79
+     7.01541           307.75
+     7.21303          159.487
+     7.41065          41.4414
+     7.60826          7.02161
+     7.80588                0
+      8.0035                0
+     8.20111                0
+     8.39873                0
+     8.59635                0
+     8.79397                0
+     8.99158                0
+      9.1892                0
+     9.38682                0
+     9.58443                0
+     9.78205                0

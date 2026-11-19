@@ -20,10 +20,10 @@ from pubstyle import PALETTE, apply_style, finalize  # noqa: E402
 ROUTES = [
     ("POPC, Insane", "insane-angles.xvg", PALETTE["blue_main"]),
     ("POPC, COBY", "coby-angles.xvg", PALETTE["teal"]),
+    ("POPC, self-assembly", "self-assembly-angles.xvg", PALETTE["red_strong"]),
     ("DLPC, Insane", "dlpc-angles.xvg", PALETTE["violet"]),
 ]
 T_EQ = 3.0  # ns excluded from the average
-WINDOW = 50  # frames = 1 ns at 20 ps per frame
 
 
 def load(path):
@@ -37,17 +37,21 @@ def running_mean(y, n):
 
 
 apply_style(font_size=15, axes_linewidth=2.0)
-fig, axes = plt.subplots(len(ROUTES), 1, figsize=(7.5, 7.8), sharex=True, sharey=True)
+fig, axes = plt.subplots(len(ROUTES), 1, figsize=(7.5, 10.0), sharex=True, sharey=True)
 
-for ax, letter, (name, path, color) in zip(axes, "abc", ROUTES):
+for ax, letter, (name, path, color) in zip(axes, "abcd", ROUTES):
     t, tilt = load(path)
     keep = t >= T_EQ
     mean, sd = tilt[keep].mean(), tilt[keep].std()
 
     ax.axvspan(0, T_EQ, color=PALETTE["neutral"], alpha=0.35, lw=0)
     ax.fill_between([T_EQ, t[-1]], mean - sd, mean + sd, color=color, alpha=0.12, lw=0)
-    ax.plot(t, tilt, color=color, alpha=0.3, linewidth=0.8)
-    ax.plot(t[WINDOW // 2:WINDOW // 2 + len(tilt) - WINDOW + 1], running_mean(tilt, WINDOW), color=color, linewidth=2.5)
+    n = int(round(1.0 / (t[1] - t[0])))  # frames per ns
+    if n >= 2:
+        ax.plot(t, tilt, color=color, alpha=0.3, linewidth=0.8)
+        ax.plot(t[n // 2:n // 2 + len(tilt) - n + 1], running_mean(tilt, n), color=color, linewidth=2.5)
+    else:  # one frame per ns or fewer: already a 1 ns sampling, so plot it directly
+        ax.plot(t, tilt, color=color, linewidth=2.5, marker="o", markersize=5)
     ax.hlines(mean, T_EQ, t[-1], color=PALETTE["dark"], linewidth=1.5, linestyle="--")
 
     ax.text(0.03, 0.96, f"({letter}) {name}", transform=ax.transAxes, va="top", fontweight="bold")

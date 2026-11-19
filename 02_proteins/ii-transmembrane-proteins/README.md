@@ -13,7 +13,7 @@ The system is a single 23-residue KALP peptide (a Leu/Ala helix capped with lysi
 
 Results:
 
-- `Insane` and `COBY` both settle the tilt at ~15° (3–20 ns), as they use the same starting coordinates.
+- `Insane` and `COBY` both settle the tilt at ~15° (3–20 ns), as they use the same starting coordinates. Self-assembly gives ~12°
 - DLPC is ~0.5 nm thinner than POPC, but the tilt stayed at ~15°
 - Two KALP peptides didn't dimerize in 250 ns. The closest they got was 2.3 nm
 
@@ -110,7 +110,9 @@ gmx grompp -f dynamic.mdp -c equilibration.gro -p system.top -n index.ndx -o dyn
 gmx mdrun -deffnm dynamic -v
 ```
 
-The tutorial suggests isotropic pressure coupling while the bilayer forms, then switching to semi-isotropic, with separate thermostat groups for solvent, membrane and protein. In our case, the run kept isotropic coupling and a single thermostat group (`tc-grps = System`) for the whole 100 ns of production (oops, but it assembled fine). The index is only used for `comm-grps = Membrane Solvent`.
+The tutorial suggests isotropic pressure coupling while the bilayer forms, then switching to semi-isotropic, with separate thermostat groups for solvent, membrane and protein. In our case, the run kept isotropic coupling and a single thermostat group (`tc-grps = System`) (oops, but it assembled fine). The index is only used for `comm-grps = Membrane Solvent`.
+
+My first production run also had `ref_t = 30` instead of `300` in `dynamic.mdp`, so it ran at 30 K and everything froze in place: the tilt stayed at 59° for 100 ns. The bilayer had already formed during equilibration (which ran at 300 K), so I just fixed `ref_t` and reran 20 ns of production from `equilibration.gro`, to match the other routes. This `dynamic.mdp` only saves one frame per ns, so the tilt below has 21 points instead of 1000.
 
 ___
 
@@ -204,6 +206,7 @@ The tilt is the angle between the z-axis (normal) and a vector going from the ba
 |---|---|---|---|
 | Insane | water bias (`water-bias/`) | 73 | `a 9 63` |
 | COBY | plain (`peptide-martinize/`) | 50 | `a 7 43` |
+| Self-assembly | water bias (`water-bias/`) | 73 | `a 9 63` |
 
 The tutorial's `a 7 43` only works for the 50-bead peptide. In the water-biased peptide, atoms 7 and 43 are side-chain beads (Lys 2 `SC2` and Leu 14 `SC1`). For Insane:
 
@@ -214,20 +217,23 @@ gmx gangle -f ../insane/dynamic.xtc -s ../insane/dynamic.tpr -g1 vector -group1 
 xmgrace insane-angles.xvg
 ```
 
-For COBY, use `a 7 43` and `-group1 a_7_43`.
+For COBY, use `a 7 43` and `-group1 a_7_43`. Self-assembly uses the same pair as Insane (`a 9 63`).
 
 `gmx gangle` gives angles around 160° because the vector points down along z, so the tilt is 180° minus the angle. Using the wrong pair (7–43) on the Insane run gives a tilt ~2° lower than the right one (9–63).
 
 `python3 plot_tilt.py` plots all of them into `figures/tilt.png` (the bottom panel is the DLPC run, see below).
 
-<img src="figures/tilt.png" width="700" alt="KALP helix tilt over 20 ns in three panels: POPC built with Insane and COBY, and DLPC built with Insane. All start around 50 degrees and settle around 15 degrees within about 3 ns.">
+<img src="figures/tilt.png" width="700" alt="KALP helix tilt over 20 ns in four panels: POPC built with Insane, COBY and self-assembly, and DLPC built with Insane. All start between 50 and 60 degrees and settle between 10 and 20 degrees within about 3 ns. The self-assembly panel has one point per ns.">
 
 | Route | Tilt at start | Mean, full run | Mean, 3–20 ns |
 |---|---|---|---|
 | Insane (water bias) | 51° | 17.8° ± 9.1° | 15.7° ± 7.3° |
 | COBY | 52° | 17.8° ± 8.9° | 15.1° ± 5.8° |
+| Self-assembly (water bias) | 58° | 15.8° ± 12.0° | 12.1° ± 5.0° |
 
-Both start from the peptide as written by `gmx editconf` and `martinize2`, tilted ~50° from z, and relax within ~3 ns, so the last column leaves those out. After that, both sit at ~15°, so the way the membrane is built doesn't change the tilt. The Insane run uses water biasing and the COBY one doesn't, which made no visible difference here either.
+All three start from the peptide as written by `gmx editconf` and `martinize2`, tilted 50–60° from z (in self-assembly, the position restraints during equilibration keep it there until production starts), and relax within ~3 ns, so the last column leaves those out. After that, Insane and COBY both sit at ~15°, so the way the membrane is built doesn't change the tilt. The Insane run uses water biasing and the COBY one doesn't, which made no visible difference here either.
+
+Self-assembly comes out a few degrees lower (~12°), and its bilayer is a bit thicker: 4.15 nm phosphate to phosphate, against 3.82 nm for Insane. The isotropic pressure coupling might have something to do with it, but with only 18 frames between 3 and 20 ns, I wouldn't read much into a 3° difference.
 ___
 ### Going further: KALP in DLPC
 

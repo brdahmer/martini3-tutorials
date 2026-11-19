@@ -1,0 +1,38 @@
+# This file was created Wed Nov 18 21:31:15 2026
+# Created by:
+#                      :-) GROMACS - gmx gangle, 2022.2 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /Users/bdahmer/Documents/martini3-tutorials/02_proteins/ii-transmembrane-proteins/analysis
+# Command line:
+#   gmx gangle -f ../self-assembly/dynamic.xtc -s ../self-assembly/dynamic.tpr -n self-assembly_index.ndx -g1 vector -group1 a_9_63 -g2 z -oall self-assembly-angles.xvg -rmpbc
+# gmx gangle is part of G R O M A C S:
+#
+# Good ROcking Metal Altar for Chronical Sinners
+#
+@    title "Angle"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "Angle (degrees)"
+@TYPE xy
+      0.000  121.993
+   1000.000  140.833
+   2000.000  162.760
+   3000.000  166.599
+   4000.000  167.123
+   5000.000  175.201
+   6000.000  161.849
+   7000.000  170.153
+   8000.000  159.239
+   9000.000  169.192
+  10000.000  165.644
+  11000.000  169.283
+  12000.000  176.562
+  13000.000  174.556
+  14000.000  169.732
+  15000.000  161.466
+  16000.000  163.914
+  17000.000  163.689
+  18000.000  163.321
+  19000.000  171.122
+  20000.000  174.220

@@ -2,7 +2,7 @@ title                    = Martini
 
 integrator               = md
 dt                       = 0.02 
-nsteps                   = 5000000
+nsteps                   = 1000000
 nstcomm                  = 100
 comm-grps		 = Membrane Solvent
 comm-mode                = Linear
@@ -34,7 +34,7 @@ rvdw                     = 1.1 ;( for use with Verlet-pairlist)
 tcoupl                   = v-rescale 
 tc-grps                  = System
 tau_t                    = 1.0
-ref_t                    = 30
+ref_t                    = 300
 Pcoupl                   = parrinello-rahman
 Pcoupltype               = isotropic  ; semiisotropic
 tau_p                    = 12.0  ; parrinello-rahman is more stable with larger tau-p, DdJ, 20130422
